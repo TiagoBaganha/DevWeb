@@ -1,0 +1,727 @@
+openapi: 3.0.0
+info:
+  title: api_Tasks
+  description: REST API from Group
+  contact:
+    name: Tiago Baganha
+    email: a041423@umaia.pt
+  version: 0.0.1
+servers:
+- url: http://localhost:8080
+  description: My localhost
+  variables:
+    basePath:
+      default: /
+paths:
+
+  /Users:
+    get:
+      tags:
+      - UsersController
+      summary: Retrieve Users
+      operationId: retrieveUsers
+      responses:
+        "200":
+          description: Array of Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Users'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                xml:
+                  name: Users
+                items:
+                  $ref: '#/components/schemas/Users'
+      x-swagger-router-controller: UsersController
+    post:
+      tags:
+      - UsersController
+      summary: Create User
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: Create a User
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+      x-swagger-router-controller: UsersController
+
+  /Users/{UsersID}:
+    get:
+      tags:
+      - UsersController
+      summary: Retrieve Users
+      operationId: retrieveUsers
+      parameters:
+      - name: UserId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Retrieve User id 1
+            value: 1
+          two:
+            summary: Retrieve User id 2
+            value: 2
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        "400":
+          description: Bad Request
+        "404":
+          description: id not found
+      x-swagger-router-controller: UsersController
+    put:
+      tags:
+      - UsersController
+      summary: Update User
+      operationId: updateUser
+      parameters:
+      - name: UserID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Update User id 1
+            value: 1
+          two:
+            summary: Update User id 2
+            value: 2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          description: Sucess
+          content:
+            application/json:
+              schema:
+                description: User PUT sucess
+                x-content-type: application/json
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+      x-swagger-router-controller: UsersController
+
+
+    delete:
+      tags:
+      - UsersController
+      summary: Delete User
+      operationId: deleteUser
+      parameters:
+      - name: UserID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Delete User id 1
+            value: 1
+          two:
+            summary: Delete User id 2
+            value: 2
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: id not found
+      x-swagger-router-controller: UsersController
+
+  /TaskCategories:
+    get:
+      tags:
+      - TaskCategoriesController
+      summary: Retrieve TaskCategories
+      operationId: retrieveTaskCategories
+      responses:
+        "200":
+          description: Array of TaskCategories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskCategories'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                xml:
+                  name: TaskCategories
+                items:
+                  $ref: '#/components/schemas/TaskCategories'
+      x-swagger-router-controller: TaskCategoriesController
+    post:
+      tags:
+      - TaskCategoriesController
+      summary: Create TaskCategories
+      operationId: createTaskCategories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCategories'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TaskCategories'
+      responses:
+        "200":
+          description: Create a TaskCategories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCategories'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TaskCategories'
+      x-swagger-router-controller: TaskCategoriesController   
+
+  /TaskCategories/{CategoryID}:
+    get:
+      tags:
+      - TaskCategoriesController
+      summary: Retrieve TaskCategories
+      operationId: retrieveTaskCategories
+      parameters:
+      - name: CategoryID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Retrieve TaskCategories id 1
+            value: 1
+          two:
+            summary: Retrieve TaskCategories id 2
+            value: 2
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskCategories'
+        "400":
+          description: Bad Request
+        "404":
+          description: id not found
+      x-swagger-router-controller: TaskCategoriesController
+    put:
+      tags:
+      - TaskCategoriesController
+      summary: Update TaskCategories
+      operationId: updateTaskCategories
+      parameters:
+      - name: CategoryID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Update TaskCategories id 1
+            value: 1
+          two:
+            summary: Update TaskCategories id 2
+            value: 2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCategories'
+        required: true
+      responses:
+        "200":
+          description: Sucess
+          content:
+            application/json:
+              schema:
+                description: TaskCategories PUT sucess
+                x-content-type: application/json
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+      x-swagger-router-controller: TaskCategoriesController
+    delete:
+      tags:
+      - TaskCategoriesController
+      summary: Delete TaskCategories
+      operationId: deleteDTaskCategories
+      parameters:
+      - name: CategoryID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Delete TaskCategories id 1
+            value: 1
+          two:
+            summary: Delete TaskCategories id 2
+            value: 2
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: id not found
+      x-swagger-router-controller: TaskCategoriesController
+
+  /TaskStatus:
+    get:
+      tags:
+      - TaskStatusController
+      summary: Retrieve TaskStatus
+      operationId: retrieveTaskStatus
+      responses:
+        "200":
+          description: Array of TaskStatus
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskStatus'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                xml:
+                  name: TaskStatus
+                items:
+                  $ref: '#/components/schemas/TaskStatus'
+      x-swagger-router-controller: TaskStatusController
+    post:
+      tags:
+      - TaskStatusController
+      summary: Create TaskStatus
+      operationId: createTaskStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskStatus'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/TaskStatus'
+      responses:
+        "200":
+          description: Create a TaskStatus
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+      x-swagger-router-controller: TaskStatusController
+
+  /TaskStatus/{StatusID}:
+    get:
+      tags:
+      - TaskStatusController
+      summary: Retrieve TaskStatus
+      operationId: retrieveTaskStatus
+      parameters:
+      - name: StatusID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Retrieve TaskStatus StatusID 1
+            value: 1
+          two:
+            summary: Retrieve TaskStatus StatusID 2
+            value: 2
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+        "400":
+          description: Bad Request
+        "404":
+          description: id not found
+      x-swagger-router-controller: TaskStatusController
+    put:
+      tags:
+      - TaskStatusController
+      summary: Update TaskStatus
+      operationId: updateTaskStatus
+      parameters:
+      - name: StatusID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Update TaskStatus StatusID 1
+            value: 1
+          two:
+            summary: Update TaskStatus StatusID 2
+            value: 2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskStatus'
+        required: true
+      responses:
+        "200":
+          description: Sucess
+          content:
+            application/json:
+              schema:
+                description: TaskStatus PUT sucess
+                x-content-type: application/json
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+      x-swagger-router-controller: TaskStatusController
+    delete:
+      tags:
+      - TaskStatusController
+      summary: Delete Ator
+      operationId: deleteTaskStatus
+      parameters:
+      - name: StatusID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Delete TaskStatus StatusID 1
+            value: 1
+          two:
+            summary: Delete TaskStatus StatusID 2
+            value: 2
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: id not found
+      x-swagger-router-controller: TaskStatusController
+
+  /Tasks:
+    get:
+      tags:
+      - TasksController
+      summary: Retrieve Tasks
+      operationId: retrieveTasks
+      responses:
+        "200":
+          description: Array of Tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tasks'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                xml:
+                  name: Tasks
+                items:
+                  $ref: '#/components/schemas/Tasks'
+      x-swagger-router-controller: TasksController
+    post:
+      tags:
+      - TasksController
+      summary: Create Tasks
+      operationId: createTasks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+      responses:
+        "200":
+          description: Create a Tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+      x-swagger-router-controller: TasksController
+
+  /Tasks/{TaskID}:
+    get:
+      tags:
+      - TasksController
+      summary: Retrieve Tasks
+      operationId: retrieveTasks
+      parameters:
+      - name: TasksID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Retrieve Tasks TasksID 1
+            value: 1
+          two:
+            summary: Retrieve Tasks TasksID 2
+            value: 2
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+        "400":
+          description: Bad Request
+        "404":
+          description: id not found
+      x-swagger-router-controller: TasksController
+    put:
+      tags:
+      - TasksController
+      summary: Update Tasks
+      operationId: updateTasks
+      parameters:
+      - name: TasksID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Update Tasks TasksID 1
+            value: 1
+          two:
+            summary: Update Tasks TasksID 2
+            value: 2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tasks'
+        required: true
+      responses:
+        "200":
+          description: Sucess
+          content:
+            application/json:
+              schema:
+                description: Tasks PUT sucess
+                x-content-type: application/json
+        "400":
+          description: Bad request
+        "404":
+          description: id not found
+      x-swagger-router-controller: TasksController
+    delete:
+      tags:
+      - TasksController
+      summary: Delete Tasks
+      operationId: deleteTasks
+      parameters:
+      - name: TasksID
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          minimum: 1
+          type: integer
+          format: int64
+        examples:
+          one:
+            summary: Delete Tasks TasksID 1
+            value: 1
+          two:
+            summary: Delete Tasks TasksID 2
+            value: 2
+      responses:
+        "204":
+          description: No Content
+        "404":
+          description: id not found
+      x-swagger-router-controller: TasksController
+
+components:
+  schemas:
+
+
+    Users:
+      title: Users
+      required:
+      - Username
+      type: object
+      properties:
+        Userid:
+          type: integer
+          format: int64
+        Username:
+          type: string
+        Email:
+          type: string
+      additionalProperties: false
+      example:
+        Userid: 1
+        Username: John Doe
+        Email: john.doe@example.com
+
+
+    Taskcategories:
+      title: Taskcategories
+      required:
+      - CategoryID
+      type: object
+      properties:
+        CategoryID:
+          type: integer
+          format: int64
+        CategoryName:
+          type: string
+      additionalProperties: false
+      example:
+        CategoryID: 1
+        name: Trabalho
+
+
+    TaskStatus:
+      title: TaskStatus
+      required:
+      - StatusID
+      type: object
+      properties:
+        StatusID:
+          type: integer
+          format: int64
+        StatusName:
+          type: string
+      additionalProperties: false
+      example:
+        CategoryID: 2
+        name: Concluída
+
+
+
+    Tasks:
+      title: Tasks
+      required:
+      - TasksID
+      - Title
+      type: object
+      properties:
+        TasksID:
+          type: integer
+          format: int64
+        Title:
+          type: string
+        Description:
+          type: string
+        DueDate:
+          type: date
+        UserID:
+          type: integer
+          format: int64 
+        CategoryID:
+          type: integer
+          format: int64 
+        StatusID:
+          type: integer
+          format: int64 
+      additionalProperties: false
+      example:
+        id: 1
+        Title: Projeto XYZ
+        Description: Desenvolver o projeto XYZ para o cliente
+        DueDate: 2024-02-15
+        UserID: 1
+        CategoryID: 1
+        StatusID: 1

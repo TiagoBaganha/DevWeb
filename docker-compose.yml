@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+    mysqldb:
+        image: mysql:latest
+        container_name: mysql
+        ports:
+            - 3307:3306
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            timeout: 5s
+            retries: 10
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+            MYSQL_DATABASE: api_tasks
+            MYSQL_USER: root
+            MYSQL_PASSWORD: 1234
+    app:
+        depends_on:
+            mysqldb:
+                condition: service_healthy
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        working_dir: /usr/src/TasksAPI
+        container_name: api
+        restart: unless-stopped
+        env_file: ./.env
+        ports:
+            - 8080:8080
+        stdin_open: true
+        tty: true
