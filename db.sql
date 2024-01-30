@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS TaskStatus (
 -- Criação da tabela de tarefas
 CREATE TABLE IF NOT EXISTS Tasks (
     TaskID INT PRIMARY KEY,
+    Title VARCHAR(100),
     Description TEXT,
     DueDate DATE,
     UserID INT,

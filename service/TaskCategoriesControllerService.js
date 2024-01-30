@@ -54,20 +54,7 @@ exports.deleteTaskCategories = function(id) {
  * id Long 
  * returns TaskCategories
  **/
-exports.retrieveTaskCategories = function(id) {
-  return new Promise(function(resolve, reject) {
-    sql.query("SELECT * FROM TaskCategories WHERE id = ?",[id], function(err,res){
-      if(err){
-        console.log(err);
-        reject(err);
-      }
-      else{
-        console.log(res);
-        resolve(res[0]);
-      }
-    });
-  });
-}
+
 
 
 /**

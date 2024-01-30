@@ -121,6 +121,11 @@ paths:
             summary: Update User id 2
             value: 2
       requestBody:
+        example:
+          UsersExample01:
+              $ref: '#/components/examples/UsersExample01'
+          UsersExample02:
+              $ref: '#/components/examples/UsersExample02'
         content:
           application/json:
             schema:
@@ -281,6 +286,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TaskCategories'
+            examples:
+              TaskCategoriesExample01:
+                $ref: '#/components/examples/TaskCategoriesExample01'
+              TaskCategoriesExample02:
+                $ref: '#/components/examples/TaskCategoriesExample01'
         required: true
       responses:
         "200":
@@ -435,6 +445,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TaskStatus'
+            examples:
+              TaskStatusExample01:
+                $ref: '#/components/examples/TaskStatusExample01'
+              TaskStatusExample02:
+                $ref: '#/components/examples/TaskStatusExample01'
         required: true
       responses:
         "200":
@@ -589,6 +604,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Tasks'
+            examples:
+              TasksExample01:
+                $ref: '#/components/examples/TasksExample01'
+              TasksExample02:
+                $ref: '#/components/examples/TasksExample01'
         required: true
       responses:
         "200":
@@ -725,3 +745,50 @@ components:
         UserID: 1
         CategoryID: 1
         StatusID: 1
+
+  examples:
+    UsersExample01:
+      value:
+        UserID: 1
+        UserName: John Doe
+        Email: John.doe@example.com 
+    UsersExample02:
+      value:
+        UserID: 2
+        UserName: Jane Smith
+        Email: jane.smith@example.com
+    TaskcategoriesExample01:
+      value:
+        CategoryID: 1
+        CategoryName: Trabalho
+    TaskcategoriesExample02:
+      value:
+       value:
+        CategoryID: 2
+        CategoryName: Pessoal
+    TaskStatusExample01:
+      value:
+        StatusID: 1
+        StatusName: Em Andamento
+    TaskStatusExample02:
+      value:
+        StatusID: 2
+        StatusName: Concluída
+    TasksExample01:
+      value:
+        TaskID: 2
+        Title: Comprar mantimentos
+        Description: Ir ao supermercado e comprar mantimentos
+        DueDate: 2024-01-30
+        UserID: 2
+        CategoryID: 2
+        StatusID: 1
+    TasksExample02:
+      value:
+        TaskID: 3
+        Title: Estudar SQL
+        Description: Revisar consultas SQL e práticas avançadas
+        DueDate: 2024-02-15
+        UserID: 1
+        CategoryID: 1
+        StatusID: 1    
