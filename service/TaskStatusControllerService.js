@@ -12,7 +12,7 @@ var sql = require('../utils/db.js');
 exports.createTaskStatus = function(body) {
   return new Promise(function(resolve, reject) {
     console.log(body);
-    sql.query("INSERT INTO TaskStatus (StatusID, StatusName) Values (?,?)",[body.StatusyId,body.StatusName],function(err,res){
+    sql.query("INSERT INTO TaskStatus (StatusID, StatusName) Values (?,?)",[body.StatusID,body.StatusName],function(err,res){
       if(err){
         console.log(err);
         reject(err);
@@ -34,7 +34,16 @@ exports.createTaskStatus = function(body) {
  **/
 exports.deleteTaskStatus = function(id) {
   return new Promise(function(resolve, reject) {
-    sql.query("DELETE FROM TaskStatus WHERE id = ?",[id], function (err,res){
+    sql.query("DELETE FROM Tasks WHERE StatusID = ?",[id], function (err,res){
+      if (err|| !res.affectedRows){
+        console.log(err);
+        console.log(res);
+      }
+      else{
+        console.log(res);
+      }
+    });
+    sql.query("DELETE FROM TaskStatus WHERE StatusID = ?",[id], function (err,res){
       if (err|| !res.affectedRows){
         console.log(err);
         console.log(res);
@@ -56,7 +65,7 @@ exports.deleteTaskStatus = function(id) {
  **/
 exports.retrieveTaskStatus = function(id) {
   return new Promise(function(resolve, reject) {
-    sql.query("SELECT * FROM TaskStatus WHERE id = ?",[id], function(err,res){
+    sql.query("SELECT * FROM TaskStatus WHERE StatusID = ?",[id], function(err,res){
       if(err){
         console.log(err);
         reject(err);
@@ -71,11 +80,11 @@ exports.retrieveTaskStatus = function(id) {
 
 
 /**
- * Retrieve TaskStatus
+ * Retrieve TaskStatuses
  *
  * returns List
  **/
-exports.retrieveTaskStatus = function() {
+exports.retrieveTaskStatuses = function() {
   return new Promise(function(resolve, reject) {
     sql.query("SELECT * FROM TaskStatus",function(err,res){
       if(err){
@@ -100,7 +109,7 @@ exports.retrieveTaskStatus = function() {
  **/
 exports.updateTaskStatus = function(body,id) {
   return new Promise(function(resolve, reject) {
-    sql.query("UPDATE TaskStatus set StatusName = ?, WHERE id = ?", [body.StatusName, id],function(err,res){
+    sql.query("UPDATE TaskStatus set StatusName = ? WHERE StatusID = ?", [body.StatusName, id],function(err,res){
       if(err){
         console.log(err);
         reject(err);

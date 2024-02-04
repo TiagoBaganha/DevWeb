@@ -12,7 +12,7 @@ var sql = require('../utils/db.js');
 exports.createUsers = function(body) {
   return new Promise(function(resolve, reject) {
     console.log(body);
-    sql.query("INSERT INTO Users (UsersID, UserName, Email) Values (?,?,?)",[body.UserId,body.UserName,body.Email],function(err,res){
+    sql.query("INSERT INTO Users (UserID, UserName, Email) Values (?,?,?)",[body.UserID,body.UserName,body.Email],function(err,res){
       if(err){
         console.log(err);
         reject(err);
@@ -34,7 +34,16 @@ exports.createUsers = function(body) {
  **/
 exports.deleteUsers = function(id) {
   return new Promise(function(resolve, reject) {
-    sql.query("DELETE FROM Users WHERE id = ?",[id], function (err,res){
+    sql.query("DELETE FROM Tasks WHERE UserID = ?",[id], function (err,res){
+      if (err|| !res.affectedRows){
+        console.log(err);
+        console.log(res);
+      }
+      else{
+        console.log(res);
+      }
+    });
+    sql.query("DELETE FROM Users WHERE UserID = ?",[id], function (err,res){
       if (err|| !res.affectedRows){
         console.log(err);
         console.log(res);
@@ -54,9 +63,9 @@ exports.deleteUsers = function(id) {
  * id Long 
  * returns Users
  **/
-exports.retrieveUsers = function(id) {
+exports.retrieveUser = function(id) {
   return new Promise(function(resolve, reject) {
-    sql.query("SELECT * FROM Users WHERE id = ?",[id], function(err,res){
+    sql.query("SELECT * FROM Users WHERE UserID = ?",[id], function(err,res){
       if(err){
         console.log(err);
         reject(err);
@@ -100,7 +109,7 @@ exports.retrieveUsers = function() {
  **/
 exports.updateUsers = function(body,id) {
   return new Promise(function(resolve, reject) {
-    sql.query("UPDATE Users set Email = ?, UserName = ? WHERE id = ?", [body.Email,body.UserName, id],function(err,res){
+    sql.query("UPDATE Users set Email = ?, UserName = ? WHERE UserID = ?", [body.Email,body.UserName, id],function(err,res){
       if(err){
         console.log(err);
         reject(err);

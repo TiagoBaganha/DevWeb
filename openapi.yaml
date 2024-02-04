@@ -13,7 +13,7 @@ servers:
     basePath:
       default: /
 paths:
-
+  
   /Users:
     get:
       tags:
@@ -42,35 +42,35 @@ paths:
       tags:
       - UsersController
       summary: Create User
-      operationId: createUser
+      operationId: createUsers
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Users'
           application/xml:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Users'
       responses:
         "200":
           description: Create a User
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Users'
             application/xml:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/Users'
       x-swagger-router-controller: UsersController
 
-  /Users/{UsersID}:
+  /Users/{UserID}:
     get:
       tags:
       - UsersController
-      summary: Retrieve Users
-      operationId: retrieveUsers
+      summary: Retrieve User
+      operationId: retrieveUser
       parameters:
-      - name: UserId
+      - name: UserID
         in: path
         required: true
         style: simple
@@ -102,7 +102,7 @@ paths:
       tags:
       - UsersController
       summary: Update User
-      operationId: updateUser
+      operationId: updateUsers
       parameters:
       - name: UserID
         in: path
@@ -121,15 +121,15 @@ paths:
             summary: Update User id 2
             value: 2
       requestBody:
-        example:
-          UsersExample01:
-              $ref: '#/components/examples/UsersExample01'
-          UsersExample02:
-              $ref: '#/components/examples/UsersExample02'
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/Users'
+            example:
+              UsersExample01:
+                $ref: '#/components/examples/UsersExample01'
+              UsersExample02:
+                $ref: '#/components/examples/UsersExample02'
         required: true
       responses:
         "200":
@@ -144,13 +144,11 @@ paths:
         "404":
           description: id not found
       x-swagger-router-controller: UsersController
-
-
     delete:
       tags:
       - UsersController
       summary: Delete User
-      operationId: deleteUser
+      operationId: deleteUsers
       parameters:
       - name: UserID
         in: path
@@ -229,7 +227,7 @@ paths:
       tags:
       - TaskCategoriesController
       summary: Retrieve TaskCategories
-      operationId: retrieveTaskCategories
+      operationId: retrieveTaskCategory
       parameters:
       - name: CategoryID
         in: path
@@ -242,10 +240,10 @@ paths:
           format: int64
         examples:
           one:
-            summary: Retrieve TaskCategories id 1
+            summary: Retrieve TaskCategory id 1
             value: 1
           two:
-            summary: Retrieve TaskCategories id 2
+            summary: Retrieve TaskCategory id 2
             value: 2
       responses:
         "200":
@@ -262,7 +260,7 @@ paths:
     put:
       tags:
       - TaskCategoriesController
-      summary: Update TaskCategories
+      summary: Update TaskCategory
       operationId: updateTaskCategories
       parameters:
       - name: CategoryID
@@ -309,7 +307,7 @@ paths:
       tags:
       - TaskCategoriesController
       summary: Delete TaskCategories
-      operationId: deleteDTaskCategories
+      operationId: deleteTaskCategories
       parameters:
       - name: CategoryID
         in: path
@@ -338,8 +336,8 @@ paths:
     get:
       tags:
       - TaskStatusController
-      summary: Retrieve TaskStatus
-      operationId: retrieveTaskStatus
+      summary: Retrieve TaskStatuses
+      operationId: retrieveTaskStatuses
       responses:
         "200":
           description: Array of TaskStatus
@@ -467,7 +465,7 @@ paths:
     delete:
       tags:
       - TaskStatusController
-      summary: Delete Ator
+      summary: Delete taskStatus
       operationId: deleteTaskStatus
       parameters:
       - name: StatusID
@@ -520,7 +518,7 @@ paths:
     post:
       tags:
       - TasksController
-      summary: Create Tasks
+      summary: Create Task
       operationId: createTasks
       requestBody:
         content:
@@ -532,7 +530,7 @@ paths:
               $ref: '#/components/schemas/Tasks'
       responses:
         "200":
-          description: Create a Tasks
+          description: Create a Task
           content:
             application/json:
               schema:
@@ -547,9 +545,9 @@ paths:
       tags:
       - TasksController
       summary: Retrieve Tasks
-      operationId: retrieveTasks
+      operationId: retrieveTask
       parameters:
-      - name: TasksID
+      - name: TaskID
         in: path
         required: true
         style: simple
@@ -583,7 +581,7 @@ paths:
       summary: Update Tasks
       operationId: updateTasks
       parameters:
-      - name: TasksID
+      - name: TaskID
         in: path
         required: true
         style: simple
@@ -629,7 +627,7 @@ paths:
       summary: Delete Tasks
       operationId: deleteTasks
       parameters:
-      - name: TasksID
+      - name: TaskID
         in: path
         required: true
         style: simple
@@ -659,24 +657,24 @@ components:
     Users:
       title: Users
       required:
-      - Username
+      - UserName
       type: object
       properties:
-        Userid:
+        UserID:
           type: integer
           format: int64
-        Username:
+        UserName:
           type: string
         Email:
           type: string
       additionalProperties: false
       example:
-        Userid: 1
-        Username: John Doe
+        UserID: 1
+        UserName: John Doe
         Email: john.doe@example.com
 
 
-    Taskcategories:
+    TaskCategories:
       title: Taskcategories
       required:
       - CategoryID
@@ -714,11 +712,11 @@ components:
     Tasks:
       title: Tasks
       required:
-      - TasksID
+      - TaskID
       - Title
       type: object
       properties:
-        TasksID:
+        TaskID:
           type: integer
           format: int64
         Title:
@@ -726,7 +724,7 @@ components:
         Description:
           type: string
         DueDate:
-          type: date
+          type: string
         UserID:
           type: integer
           format: int64 
@@ -757,11 +755,11 @@ components:
         UserID: 2
         UserName: Jane Smith
         Email: jane.smith@example.com
-    TaskcategoriesExample01:
+    TaskCategoriesExample01:
       value:
         CategoryID: 1
         CategoryName: Trabalho
-    TaskcategoriesExample02:
+    TaskCategoriesExample02:
       value:
        value:
         CategoryID: 2

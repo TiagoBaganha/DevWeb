@@ -24,8 +24,8 @@ module.exports.deleteUsers = function deleteUsers (req, res, next, id) {
     });
 };
 
-module.exports.retrieveUsers = function retrieveUsers (req, res, next, id) {
-  UsersController.retrieveUsers(id)
+module.exports.retrieveUser = function retrieveUser (req, res, next, id) {
+  UsersController.retrieveUser(id)
     .then(function (response) {
       utils.writeJson(res, response);
     })

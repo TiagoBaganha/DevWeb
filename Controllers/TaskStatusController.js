@@ -5,7 +5,7 @@ var TaskStatusController = require('../service/TaskStatusControllerService');
 
 module.exports.createTaskStatus = function createTaskStatus (req, res, next, body) {
     TaskStatusController.createTaskStatus(body)
-  .then(TaskStatusController.retrieveTaskStatus)
+  .then(TaskStatusController.retrieveTaskStatuses)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -34,8 +34,8 @@ module.exports.retrieveTaskStatus = function retrieveTaskStatus(req, res, next, 
     });
 };
 
-module.exports.retrieveTaskStatus = function retrieveTaskStatus (req, res, next) {
-    TaskStatusController.retrieveTaskStatus()
+module.exports.retrieveTaskStatuses = function retrieveTaskStatuses (req, res, next) {
+    TaskStatusController.retrieveTaskStatuses()
     .then(function (response) {
       utils.writeJson(res, response);
     })

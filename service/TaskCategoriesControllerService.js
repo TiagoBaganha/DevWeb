@@ -12,7 +12,7 @@ var sql = require('../utils/db.js');
 exports.createTaskCategories = function(body) {
   return new Promise(function(resolve, reject) {
     console.log(body);
-    sql.query("INSERT INTO TaskCategories (CategoryID, CategoryName) Values (?,?)",[body.CategoryId,body.CategoryName],function(err,res){
+    sql.query("INSERT INTO TaskCategories (CategoryID, CategoryName) Values (?,?)",[body.CategoryID,body.CategoryName],function(err,res){
       if(err){
         console.log(err);
         reject(err);
@@ -34,7 +34,16 @@ exports.createTaskCategories = function(body) {
  **/
 exports.deleteTaskCategories = function(id) {
   return new Promise(function(resolve, reject) {
-    sql.query("DELETE FROM TaskCategories WHERE id = ?",[id], function (err,res){
+    sql.query("DELETE FROM Tasks WHERE CategoryID = ?",[id], function (err,res){
+      if (err|| !res.affectedRows){
+        console.log(err);
+        console.log(res);
+      }
+      else{
+        console.log(res);
+      }
+    });
+    sql.query("DELETE FROM TaskCategories WHERE CategoryID = ?",[id], function (err,res){
       if (err|| !res.affectedRows){
         console.log(err);
         console.log(res);
@@ -54,14 +63,27 @@ exports.deleteTaskCategories = function(id) {
  * id Long 
  * returns TaskCategories
  **/
-
-
+exports.retrieveTaskCategory = function(id) {
+  return new Promise(function(resolve, reject) {
+    sql.query("SELECT * FROM TaskCategories WHERE CategoryID = ?",[id], function(err,res){
+      if(err){
+        console.log(err);
+        reject(err);
+      }
+      else{
+        console.log(res);
+        resolve(res[0]);
+      }
+    });
+  });
+}
 
 /**
  * Retrieve TaskCategories
  *
  * returns List
  **/
+
 exports.retrieveTaskCategories = function() {
   return new Promise(function(resolve, reject) {
     sql.query("SELECT * FROM TaskCategories",function(err,res){
@@ -77,7 +99,6 @@ exports.retrieveTaskCategories = function() {
   });
 }
 
-
 /**
  * Update TaskCategories
  *
@@ -87,7 +108,7 @@ exports.retrieveTaskCategories = function() {
  **/
 exports.updateTaskCategories = function(body,id) {
   return new Promise(function(resolve, reject) {
-    sql.query("UPDATE TaskCategories set CategoryName = ?, WHERE id = ?", [body.CategoryName, id],function(err,res){
+    sql.query("UPDATE TaskCategories set CategoryName = ? WHERE CategoryID = ?", [body.CategoryName, id],function(err,res){
       if(err){
         console.log(err);
         reject(err);

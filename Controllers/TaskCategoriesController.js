@@ -24,8 +24,8 @@ module.exports.deleteTaskCategories = function deleteTaskCategories (req, res, n
     });
 };
 
-module.exports.retrieveTaskCategories = function retrieveTaskCategories (req, res, next, id) {
-    TaskCategoriesController.retrieveTaskCategories(id)
+module.exports.retrieveTaskCategory = function retrieveTaskCategory (req, res, next, id) {
+    TaskCategoriesController.retrieveTaskCategory(id)
     .then(function (response) {
       utils.writeJson(res, response);
     })

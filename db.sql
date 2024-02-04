@@ -5,20 +5,22 @@ CREATE TABLE IF NOT EXISTS Users (
     UserID INT PRIMARY KEY,
     UserName VARCHAR(50) NOT NULL,
     Email VARCHAR(100) NOT NULL
+
 );
+ALTER TABLE Users AUTO_INCREMENT = 1;
 
 -- Criação da tabela de categorias de tarefas
 CREATE TABLE IF NOT EXISTS TaskCategories (
     CategoryID INT PRIMARY KEY,
     CategoryName VARCHAR(50) NOT NULL
 );
-
+ALTER TABLE TaskCategories AUTO_INCREMENT = 1;
 -- Criação da tabela de status de tarefas
 CREATE TABLE IF NOT EXISTS TaskStatus (
     StatusID INT PRIMARY KEY,
     StatusName VARCHAR(50) NOT NULL
 );
-
+ALTER TABLE TaskStatus AUTO_INCREMENT = 1;
 -- Criação da tabela de tarefas
 CREATE TABLE IF NOT EXISTS Tasks (
     TaskID INT PRIMARY KEY,
@@ -38,7 +40,7 @@ INSERT INTO Users (UserID, UserName, Email)
 VALUES
     (1, 'John Doe', 'john.doe@example.com'),
     (2, 'Jane Smith', 'jane.smith@example.com'),
-    (3, 'Robert Johnson', 'robert.johnson@example.com'),
+    (3, 'Robert Johnson', 'robert.johnson@example.com')
     
 
 -- Inserção de dados na tabela TaskCategories
@@ -62,7 +64,7 @@ VALUES
     (2, 'Comprar mantimentos', 'Ir ao supermercado e comprar mantimentos', '2024-01-30', 2, 2, 1),
     (3, 'Estudar SQL', 'Revisar consultas SQL e práticas avançadas', '2024-02-10', 3, 3, 1),
     (4, 'Relatório Mensal', 'Preparar relatório mensal para a reunião de equipe', '2024-02-20', 1, 1, 1),
-    (5, 'Exercícios Físicos', 'Realizar exercícios físicos por 30 minutos', '2024-01-31', 2, 2, 1);
+    (5, 'Exercícios Físicos', 'Realizar exercícios físicos por 30 minutos', '2024-01-31', 2, 2, 1),
     (6, 'Reunião de Projeto', 'Participar da reunião de acompanhamento do projeto ABC', '2024-02-05', 1, 1, 1),
     (7, 'Preparar Apresentação', 'Criar apresentação para a próxima reunião de equipe', '2024-02-18', 1, 2, 1),
     (8, 'Comprar Material de Escritório', 'Ir à papelaria e comprar material de escritório', '2024-02-03', 2, 2, 1),

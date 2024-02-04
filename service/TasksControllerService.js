@@ -12,7 +12,7 @@ var sql = require('../utils/db.js');
 exports.createTasks = function(body) {
   return new Promise(function(resolve, reject) {
     console.log(body);
-    sql.query("INSERT INTO Tasks (TaskID, Description, DueDate, UserID, CategoryID, StatusID) Values (?,?,?,?,?,?)",[body.TaskID, body.Description, body.DueDate, body.UserID, body.CategoryID, body.StatusID],function(err,res){
+    sql.query("INSERT INTO Tasks (TaskID, Title, Description, DueDate, UserID, CategoryID, StatusID) Values (?,?,?,?,?,?,?)",[body.TaskID,body.Title,body.Description,body.DueDate,body.UserID,body.CategoryID,body.StatusID],function(err,res){
       if(err){
         console.log(err);
         reject(err);
@@ -34,7 +34,7 @@ exports.createTasks = function(body) {
  **/
 exports.deleteTasks = function(id) {
   return new Promise(function(resolve, reject) {
-    sql.query("DELETE FROM Tasks WHERE id = ?",[id], function (err,res){
+    sql.query("DELETE FROM Tasks WHERE TaskID = ?",[id], function (err,res){
       if (err|| !res.affectedRows){
         console.log(err);
         console.log(res);
@@ -54,9 +54,9 @@ exports.deleteTasks = function(id) {
  * id Long 
  * returns Tasks
  **/
-exports.retrieveTasks = function(id) {
+exports.retrieveTask = function(id) {
   return new Promise(function(resolve, reject) {
-    sql.query("SELECT * FROM Tasks WHERE id = ?",[id], function(err,res){
+    sql.query("SELECT * FROM Tasks WHERE TaskID = ?",[id], function(err,res){
       if(err){
         console.log(err);
         reject(err);
@@ -100,7 +100,7 @@ exports.retrieveTasks = function() {
  **/
 exports.updateTasks = function(body,id) {
   return new Promise(function(resolve, reject) {
-    sql.query("UPDATE Tasks set StatusName = ?, WHERE id = ?", [body.StatusName, id],function(err,res){
+    sql.query("UPDATE Tasks set TaskID = ?, Title = ?, Description = ?, DueDate = ?, UserID = ?, CategoryID = ?, StatusID = ? WHERE TaskID = ?", [body.TaskID,body.Title,body.Description,body.DueDate,body.UserID,body.CategoryID,body.StatusID, id],function(err,res){
       if(err){
         console.log(err);
         reject(err);
