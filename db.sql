@@ -1,26 +1,29 @@
-USE `api_tasks`
+-- Criação do esquema e uso do mesmo
+CREATE DATABASE IF NOT EXISTS api_tasks;
+SHOW DATABASES;
+USE api_tasks;
+
 
 -- Criação da tabela de usuários
+START TRANSACTION;
 CREATE TABLE IF NOT EXISTS Users (
     UserID INT PRIMARY KEY,
     UserName VARCHAR(50) NOT NULL,
     Email VARCHAR(100) NOT NULL
-
 );
-ALTER TABLE Users AUTO_INCREMENT = 1;
 
 -- Criação da tabela de categorias de tarefas
 CREATE TABLE IF NOT EXISTS TaskCategories (
     CategoryID INT PRIMARY KEY,
     CategoryName VARCHAR(50) NOT NULL
 );
-ALTER TABLE TaskCategories AUTO_INCREMENT = 1;
+
 -- Criação da tabela de status de tarefas
 CREATE TABLE IF NOT EXISTS TaskStatus (
     StatusID INT PRIMARY KEY,
     StatusName VARCHAR(50) NOT NULL
 );
-ALTER TABLE TaskStatus AUTO_INCREMENT = 1;
+
 -- Criação da tabela de tarefas
 CREATE TABLE IF NOT EXISTS Tasks (
     TaskID INT PRIMARY KEY,
@@ -30,35 +33,39 @@ CREATE TABLE IF NOT EXISTS Tasks (
     UserID INT,
     CategoryID INT,
     StatusID INT,
-    FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (CategoryID) REFERENCES TaskCategories(CategoryID),
-    FOREIGN KEY (StatusID) REFERENCES TaskStatus(StatusID)
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (CategoryID) REFERENCES TaskCategories(CategoryID) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (StatusID) REFERENCES TaskStatus(StatusID)  ON UPDATE CASCADE ON DELETE CASCADE
 );
+COMMIT;
 
+-- Inserção de dados
+START TRANSACTION;
 -- Inserção de dados na tabela Users
-INSERT INTO Users (UserID, UserName, Email)
+
+INSERT IGNORE INTO Users (UserID, UserName, Email)
 VALUES
     (1, 'John Doe', 'john.doe@example.com'),
     (2, 'Jane Smith', 'jane.smith@example.com'),
-    (3, 'Robert Johnson', 'robert.johnson@example.com')
-    
+    (3, 'Robert Johnson', 'robert.johnson@example.com');
+
 
 -- Inserção de dados na tabela TaskCategories
-INSERT INTO TaskCategories (CategoryID, CategoryName)
+INSERT IGNORE INTO TaskCategories (CategoryID, CategoryName)
 VALUES
     (1, 'Trabalho'),
     (2, 'Pessoal'),
     (3, 'Estudo');
 
 -- Inserção de dados na tabela TaskStatus
-INSERT INTO TaskStatus (StatusID, StatusName)
+INSERT IGNORE INTO TaskStatus (StatusID, StatusName)
 VALUES
     (1, 'Em Andamento'),
     (2, 'Concluída'),
     (3, 'Atrasada');
 
 -- Inserção de dados na tabela Tasks
-INSERT INTO Tasks (TaskID, Title, Description, DueDate, UserID, CategoryID, StatusID)
+INSERT IGNORE  INTO Tasks (TaskID, Title, Description, DueDate, UserID, CategoryID, StatusID)
 VALUES
     (1, 'Projeto XYZ', 'Desenvolver o projeto XYZ para o cliente', '2024-02-15', 1, 1, 1),
     (2, 'Comprar mantimentos', 'Ir ao supermercado e comprar mantimentos', '2024-01-30', 2, 2, 1),
@@ -90,3 +97,5 @@ VALUES
     (28, 'Atualizar Redes Sociais', 'Atualizar e manter as redes sociais da empresa', '2024-02-21', 2, 2, 1),
     (29, 'Fazer Exame de Rotina', 'Agendar e realizar exame de saúde de rotina', '2024-02-24', 3, 3, 1),
     (30, 'Realizar Testes de Usabilidade', 'Conduzir testes de usabilidade para melhorias no produto', '2024-02-27', 1, 1, 1);
+COMMIT;
+
