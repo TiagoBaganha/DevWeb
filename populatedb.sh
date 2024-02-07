@@ -1,1 +1,1 @@
-mysql -u root -p < ./db.sql
+mysql -u root -p < /docker-entrypoint-initdb.d/db.sql

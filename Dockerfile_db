@@ -1,4 +1,4 @@
-FROM mysql:latest
+FROM mysql:8.0
 
 # Set the environment variables
 ENV MYSQL_ROOT_PASSWORD=1234
@@ -6,6 +6,10 @@ ENV MYSQL_DATABASE=api_tasks
 
 # Copy the database file into the container at /docker-entrypoint-initdb.d/
 COPY ./db.sql /docker-entrypoint-initdb.d/
+# Just a script to help re-populate the database if needed.
+COPY ./populatedb.sh /db_initialize/
 
 # Expose the MySQL port
-EXPOSE 3307
+EXPOSE 3306
+# Start the MySQL server
+CMD [ "mysqld" ]
