@@ -4,7 +4,7 @@ RUN mkdir -p /usr/src/TasksAPI
 WORKDIR /usr/src/TasksAPI
 
 RUN apt update && apt upgrade -y && apt install -y bash && rm -rf ./node_modules && rm -rf package-lock.json
-COPY ./package.json .
+COPY ./package_api.json ./package.json
 RUN npm install
 
 COPY . .

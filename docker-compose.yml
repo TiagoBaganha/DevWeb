@@ -16,16 +16,16 @@ services:
       timeout: 10s
       retries: 3
 
-  app:
+  api:
     depends_on:
       database:
         condition: service_healthy
     build:
       context: ./
-      dockerfile: Dockerfile_app
-    image: app_image
+      dockerfile: Dockerfile_api
+    image: api_image
     working_dir: /usr/src/TasksAPI
-    container_name: app
+    container_name: api
     restart: unless-stopped
     env_file: ./.env
     ports:

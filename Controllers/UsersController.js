@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
-var utils = require('../utils/writer.js');
-var UsersController = require('../service/UsersControllerService.js');
+var utils = require("../utils/writer.js");
+var UsersController = require("../service/UsersControllerService.js");
 
-module.exports.createUsers = function createUsers (req, res, next, body) {
+module.exports.createUsers = function createUsers(req, res, next, body) {
   UsersController.createUsers(body)
-  .then(UsersController.retrieveUsers)
+    .then(UsersController.retrieveUsers)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -14,7 +14,7 @@ module.exports.createUsers = function createUsers (req, res, next, body) {
     });
 };
 
-module.exports.deleteUsers = function deleteUsers (req, res, next, id) {
+module.exports.deleteUsers = function deleteUsers(req, res, next, id) {
   UsersController.deleteUsers(id)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -24,7 +24,7 @@ module.exports.deleteUsers = function deleteUsers (req, res, next, id) {
     });
 };
 
-module.exports.retrieveUser = function retrieveUser (req, res, next, id) {
+module.exports.retrieveUser = function retrieveUser(req, res, next, id) {
   UsersController.retrieveUser(id)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -34,7 +34,7 @@ module.exports.retrieveUser = function retrieveUser (req, res, next, id) {
     });
 };
 
-module.exports.retrieveUsers = function retrieveUsers (req, res, next) {
+module.exports.retrieveUsers = function retrieveUsers(req, res, next) {
   UsersController.retrieveUsers()
     .then(function (response) {
       utils.writeJson(res, response);
@@ -46,7 +46,7 @@ module.exports.retrieveUsers = function retrieveUsers (req, res, next) {
 
 module.exports.updateUsers = function updateUsers(req, res, next, body, id) {
   UsersController.updateUsers(body, id)
-  .then(UsersController.retrieveUsers)
+    .then(UsersController.retrieveUsers)
     .then(function (response) {
       utils.writeJson(res, response);
     })

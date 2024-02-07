@@ -7,17 +7,16 @@ info:
     email: a041423@umaia.pt
   version: 0.0.1
 servers:
-- url: http://localhost:8080
-  description: My localhost
-  variables:
-    basePath:
-      default: /
+  - url: http://localhost:8080
+    description: My localhost
+    variables:
+      basePath:
+        default: /
 paths:
-  
   /Users:
     get:
       tags:
-      - UsersController
+        - UsersController
       summary: Retrieve Users
       operationId: retrieveUsers
       responses:
@@ -28,7 +27,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Users'
+                  $ref: "#/components/schemas/Users"
                 x-content-type: application/json
             application/xml:
               schema:
@@ -36,63 +35,63 @@ paths:
                 xml:
                   name: Users
                 items:
-                  $ref: '#/components/schemas/Users'
+                  $ref: "#/components/schemas/Users"
       x-swagger-router-controller: UsersController
     post:
       tags:
-      - UsersController
+        - UsersController
       summary: Create User
       operationId: createUsers
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Users'
+              $ref: "#/components/schemas/Users"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Users'
+              $ref: "#/components/schemas/Users"
       responses:
         "200":
           description: Create a User
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Users'
+                $ref: "#/components/schemas/Users"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Users'
+                $ref: "#/components/schemas/Users"
       x-swagger-router-controller: UsersController
 
   /Users/{UserID}:
     get:
       tags:
-      - UsersController
+        - UsersController
       summary: Retrieve User
       operationId: retrieveUser
       parameters:
-      - name: UserID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Retrieve User id 1
-            value: 1
-          two:
-            summary: Retrieve User id 2
-            value: 2
+        - name: UserID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Retrieve User id 1
+              value: 1
+            two:
+              summary: Retrieve User id 2
+              value: 2
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Users'
+                $ref: "#/components/schemas/Users"
         "400":
           description: Bad Request
         "404":
@@ -100,36 +99,36 @@ paths:
       x-swagger-router-controller: UsersController
     put:
       tags:
-      - UsersController
+        - UsersController
       summary: Update User
       operationId: updateUsers
       parameters:
-      - name: UserID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Update User id 1
-            value: 1
-          two:
-            summary: Update User id 2
-            value: 2
+        - name: UserID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Update User id 1
+              value: 1
+            two:
+              summary: Update User id 2
+              value: 2
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Users'
+              $ref: "#/components/schemas/Users"
             example:
               UsersExample01:
-                $ref: '#/components/examples/UsersExample01'
+                $ref: "#/components/examples/UsersExample01"
               UsersExample02:
-                $ref: '#/components/examples/UsersExample02'
+                $ref: "#/components/examples/UsersExample02"
         required: true
       responses:
         "200":
@@ -146,26 +145,26 @@ paths:
       x-swagger-router-controller: UsersController
     delete:
       tags:
-      - UsersController
+        - UsersController
       summary: Delete User
       operationId: deleteUsers
       parameters:
-      - name: UserID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Delete User id 1
-            value: 1
-          two:
-            summary: Delete User id 2
-            value: 2
+        - name: UserID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Delete User id 1
+              value: 1
+            two:
+              summary: Delete User id 2
+              value: 2
       responses:
         "204":
           description: No Content
@@ -176,7 +175,7 @@ paths:
   /TaskCategories:
     get:
       tags:
-      - TaskCategoriesController
+        - TaskCategoriesController
       summary: Retrieve TaskCategories
       operationId: retrieveTaskCategories
       responses:
@@ -187,7 +186,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TaskCategories'
+                  $ref: "#/components/schemas/TaskCategories"
                 x-content-type: application/json
             application/xml:
               schema:
@@ -195,63 +194,63 @@ paths:
                 xml:
                   name: TaskCategories
                 items:
-                  $ref: '#/components/schemas/TaskCategories'
+                  $ref: "#/components/schemas/TaskCategories"
       x-swagger-router-controller: TaskCategoriesController
     post:
       tags:
-      - TaskCategoriesController
+        - TaskCategoriesController
       summary: Create TaskCategories
       operationId: createTaskCategories
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskCategories'
+              $ref: "#/components/schemas/TaskCategories"
           application/xml:
             schema:
-              $ref: '#/components/schemas/TaskCategories'
+              $ref: "#/components/schemas/TaskCategories"
       responses:
         "200":
           description: Create a TaskCategories
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TaskCategories'
+                $ref: "#/components/schemas/TaskCategories"
             application/xml:
               schema:
-                $ref: '#/components/schemas/TaskCategories'
-      x-swagger-router-controller: TaskCategoriesController   
+                $ref: "#/components/schemas/TaskCategories"
+      x-swagger-router-controller: TaskCategoriesController
 
   /TaskCategories/{CategoryID}:
     get:
       tags:
-      - TaskCategoriesController
+        - TaskCategoriesController
       summary: Retrieve TaskCategories
       operationId: retrieveTaskCategory
       parameters:
-      - name: CategoryID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Retrieve TaskCategory id 1
-            value: 1
-          two:
-            summary: Retrieve TaskCategory id 2
-            value: 2
+        - name: CategoryID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Retrieve TaskCategory id 1
+              value: 1
+            two:
+              summary: Retrieve TaskCategory id 2
+              value: 2
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TaskCategories'
+                $ref: "#/components/schemas/TaskCategories"
         "400":
           description: Bad Request
         "404":
@@ -259,36 +258,36 @@ paths:
       x-swagger-router-controller: TaskCategoriesController
     put:
       tags:
-      - TaskCategoriesController
+        - TaskCategoriesController
       summary: Update TaskCategory
       operationId: updateTaskCategories
       parameters:
-      - name: CategoryID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Update TaskCategories id 1
-            value: 1
-          two:
-            summary: Update TaskCategories id 2
-            value: 2
+        - name: CategoryID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Update TaskCategories id 1
+              value: 1
+            two:
+              summary: Update TaskCategories id 2
+              value: 2
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskCategories'
+              $ref: "#/components/schemas/TaskCategories"
             examples:
               TaskCategoriesExample01:
-                $ref: '#/components/examples/TaskCategoriesExample01'
+                $ref: "#/components/examples/TaskCategoriesExample01"
               TaskCategoriesExample02:
-                $ref: '#/components/examples/TaskCategoriesExample01'
+                $ref: "#/components/examples/TaskCategoriesExample01"
         required: true
       responses:
         "200":
@@ -305,26 +304,26 @@ paths:
       x-swagger-router-controller: TaskCategoriesController
     delete:
       tags:
-      - TaskCategoriesController
+        - TaskCategoriesController
       summary: Delete TaskCategories
       operationId: deleteTaskCategories
       parameters:
-      - name: CategoryID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Delete TaskCategories id 1
-            value: 1
-          two:
-            summary: Delete TaskCategories id 2
-            value: 2
+        - name: CategoryID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Delete TaskCategories id 1
+              value: 1
+            two:
+              summary: Delete TaskCategories id 2
+              value: 2
       responses:
         "204":
           description: No Content
@@ -335,7 +334,7 @@ paths:
   /TaskStatus:
     get:
       tags:
-      - TaskStatusController
+        - TaskStatusController
       summary: Retrieve TaskStatuses
       operationId: retrieveTaskStatuses
       responses:
@@ -346,7 +345,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TaskStatus'
+                  $ref: "#/components/schemas/TaskStatus"
                 x-content-type: application/json
             application/xml:
               schema:
@@ -354,63 +353,63 @@ paths:
                 xml:
                   name: TaskStatus
                 items:
-                  $ref: '#/components/schemas/TaskStatus'
+                  $ref: "#/components/schemas/TaskStatus"
       x-swagger-router-controller: TaskStatusController
     post:
       tags:
-      - TaskStatusController
+        - TaskStatusController
       summary: Create TaskStatus
       operationId: createTaskStatus
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskStatus'
+              $ref: "#/components/schemas/TaskStatus"
           application/xml:
             schema:
-              $ref: '#/components/schemas/TaskStatus'
+              $ref: "#/components/schemas/TaskStatus"
       responses:
         "200":
           description: Create a TaskStatus
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TaskStatus'
+                $ref: "#/components/schemas/TaskStatus"
             application/xml:
               schema:
-                $ref: '#/components/schemas/TaskStatus'
+                $ref: "#/components/schemas/TaskStatus"
       x-swagger-router-controller: TaskStatusController
 
   /TaskStatus/{StatusID}:
     get:
       tags:
-      - TaskStatusController
+        - TaskStatusController
       summary: Retrieve TaskStatus
       operationId: retrieveTaskStatus
       parameters:
-      - name: StatusID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Retrieve TaskStatus StatusID 1
-            value: 1
-          two:
-            summary: Retrieve TaskStatus StatusID 2
-            value: 2
+        - name: StatusID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Retrieve TaskStatus StatusID 1
+              value: 1
+            two:
+              summary: Retrieve TaskStatus StatusID 2
+              value: 2
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TaskStatus'
+                $ref: "#/components/schemas/TaskStatus"
         "400":
           description: Bad Request
         "404":
@@ -418,36 +417,36 @@ paths:
       x-swagger-router-controller: TaskStatusController
     put:
       tags:
-      - TaskStatusController
+        - TaskStatusController
       summary: Update TaskStatus
       operationId: updateTaskStatus
       parameters:
-      - name: StatusID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Update TaskStatus StatusID 1
-            value: 1
-          two:
-            summary: Update TaskStatus StatusID 2
-            value: 2
+        - name: StatusID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Update TaskStatus StatusID 1
+              value: 1
+            two:
+              summary: Update TaskStatus StatusID 2
+              value: 2
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskStatus'
+              $ref: "#/components/schemas/TaskStatus"
             examples:
               TaskStatusExample01:
-                $ref: '#/components/examples/TaskStatusExample01'
+                $ref: "#/components/examples/TaskStatusExample01"
               TaskStatusExample02:
-                $ref: '#/components/examples/TaskStatusExample01'
+                $ref: "#/components/examples/TaskStatusExample01"
         required: true
       responses:
         "200":
@@ -464,26 +463,26 @@ paths:
       x-swagger-router-controller: TaskStatusController
     delete:
       tags:
-      - TaskStatusController
+        - TaskStatusController
       summary: Delete taskStatus
       operationId: deleteTaskStatus
       parameters:
-      - name: StatusID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Delete TaskStatus StatusID 1
-            value: 1
-          two:
-            summary: Delete TaskStatus StatusID 2
-            value: 2
+        - name: StatusID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Delete TaskStatus StatusID 1
+              value: 1
+            two:
+              summary: Delete TaskStatus StatusID 2
+              value: 2
       responses:
         "204":
           description: No Content
@@ -494,7 +493,7 @@ paths:
   /Tasks:
     get:
       tags:
-      - TasksController
+        - TasksController
       summary: Retrieve Tasks
       operationId: retrieveTasks
       responses:
@@ -505,7 +504,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Tasks'
+                  $ref: "#/components/schemas/Tasks"
                 x-content-type: application/json
             application/xml:
               schema:
@@ -513,63 +512,63 @@ paths:
                 xml:
                   name: Tasks
                 items:
-                  $ref: '#/components/schemas/Tasks'
+                  $ref: "#/components/schemas/Tasks"
       x-swagger-router-controller: TasksController
     post:
       tags:
-      - TasksController
+        - TasksController
       summary: Create Task
       operationId: createTasks
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Tasks'
+              $ref: "#/components/schemas/Tasks"
           application/xml:
             schema:
-              $ref: '#/components/schemas/Tasks'
+              $ref: "#/components/schemas/Tasks"
       responses:
         "200":
           description: Create a Task
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Tasks'
+                $ref: "#/components/schemas/Tasks"
             application/xml:
               schema:
-                $ref: '#/components/schemas/Tasks'
+                $ref: "#/components/schemas/Tasks"
       x-swagger-router-controller: TasksController
 
   /Tasks/{TaskID}:
     get:
       tags:
-      - TasksController
+        - TasksController
       summary: Retrieve Tasks
       operationId: retrieveTask
       parameters:
-      - name: TaskID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Retrieve Tasks TasksID 1
-            value: 1
-          two:
-            summary: Retrieve Tasks TasksID 2
-            value: 2
+        - name: TaskID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Retrieve Tasks TasksID 1
+              value: 1
+            two:
+              summary: Retrieve Tasks TasksID 2
+              value: 2
       responses:
         "200":
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Tasks'
+                $ref: "#/components/schemas/Tasks"
         "400":
           description: Bad Request
         "404":
@@ -577,36 +576,36 @@ paths:
       x-swagger-router-controller: TasksController
     put:
       tags:
-      - TasksController
+        - TasksController
       summary: Update Tasks
       operationId: updateTasks
       parameters:
-      - name: TaskID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Update Tasks TasksID 1
-            value: 1
-          two:
-            summary: Update Tasks TasksID 2
-            value: 2
+        - name: TaskID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Update Tasks TasksID 1
+              value: 1
+            two:
+              summary: Update Tasks TasksID 2
+              value: 2
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Tasks'
+              $ref: "#/components/schemas/Tasks"
             examples:
               TasksExample01:
-                $ref: '#/components/examples/TasksExample01'
+                $ref: "#/components/examples/TasksExample01"
               TasksExample02:
-                $ref: '#/components/examples/TasksExample01'
+                $ref: "#/components/examples/TasksExample01"
         required: true
       responses:
         "200":
@@ -623,26 +622,26 @@ paths:
       x-swagger-router-controller: TasksController
     delete:
       tags:
-      - TasksController
+        - TasksController
       summary: Delete Tasks
       operationId: deleteTasks
       parameters:
-      - name: TaskID
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          minimum: 1
-          type: integer
-          format: int64
-        examples:
-          one:
-            summary: Delete Tasks TasksID 1
-            value: 1
-          two:
-            summary: Delete Tasks TasksID 2
-            value: 2
+        - name: TaskID
+          in: path
+          required: true
+          style: simple
+          explode: false
+          schema:
+            minimum: 1
+            type: integer
+            format: int64
+          examples:
+            one:
+              summary: Delete Tasks TasksID 1
+              value: 1
+            two:
+              summary: Delete Tasks TasksID 2
+              value: 2
       responses:
         "204":
           description: No Content
@@ -652,12 +651,10 @@ paths:
 
 components:
   schemas:
-
-
     Users:
       title: Users
       required:
-      - UserName
+        - UserName
       type: object
       properties:
         UserID:
@@ -673,11 +670,10 @@ components:
         UserName: John Doe
         Email: john.doe@example.com
 
-
     TaskCategories:
       title: Taskcategories
       required:
-      - CategoryID
+        - CategoryID
       type: object
       properties:
         CategoryID:
@@ -690,11 +686,10 @@ components:
         CategoryID: 1
         name: Trabalho
 
-
     TaskStatus:
       title: TaskStatus
       required:
-      - StatusID
+        - StatusID
       type: object
       properties:
         StatusID:
@@ -707,13 +702,11 @@ components:
         CategoryID: 2
         name: Concluída
 
-
-
     Tasks:
       title: Tasks
       required:
-      - TaskID
-      - Title
+        - TaskID
+        - Title
       type: object
       properties:
         TaskID:
@@ -727,13 +720,13 @@ components:
           type: string
         UserID:
           type: integer
-          format: int64 
+          format: int64
         CategoryID:
           type: integer
-          format: int64 
+          format: int64
         StatusID:
           type: integer
-          format: int64 
+          format: int64
       additionalProperties: false
       example:
         id: 1
@@ -749,7 +742,7 @@ components:
       value:
         UserID: 1
         UserName: John Doe
-        Email: John.doe@example.com 
+        Email: John.doe@example.com
     UsersExample02:
       value:
         UserID: 2
@@ -761,9 +754,9 @@ components:
         CategoryName: Trabalho
     TaskCategoriesExample02:
       value:
-       value:
-        CategoryID: 2
-        CategoryName: Pessoal
+        value:
+          CategoryID: 2
+          CategoryName: Pessoal
     TaskStatusExample01:
       value:
         StatusID: 1
@@ -789,4 +782,4 @@ components:
         DueDate: 2024-02-15
         UserID: 1
         CategoryID: 1
-        StatusID: 1    
+        StatusID: 1
